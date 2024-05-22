@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% load static %}
+
+    <link href="{% static 'css/style.css'%}" rel="stylesheet">
+
+    <script src="{% static 'js/script.js' %}"></script>
+
+    {% block header_script %}{% endblock %}
+    
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+    <header>
+        <h1>CloudMSS</h1>
+    </header>
+    
+    <main>
+        {% block main %}{% endblock %}
+    </main>
+    
+    <footer>
+        <h2>CloudMSS</h2>
+    </footer>
+</body>
+
+</html>

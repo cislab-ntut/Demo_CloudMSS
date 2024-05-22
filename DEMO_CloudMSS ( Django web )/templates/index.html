@@ -1,0 +1,53 @@
+{% extends "base.html"%}
+
+{% load static %}
+
+{% block title %}CloudMSS 系統初始化{% endblock %}
+
+{% block main %}
+
+    <h2>系統初始化</h2>
+
+    <form action="/MSS_sys/" method="post">
+        {% csrf_token %}
+        <div>
+            <p>Step 1. 請先設定參與者數量，按下輸入資料，產生輸入資料欄位。</p>
+
+            <div id="controls-container">
+                <label for="num">參與者數量 (n)：</label>
+                <input id="num" type="text" name="num">
+                <input type="button" onclick = "input_box()" value="開始輸入資料">
+            </div>
+        </div>
+
+        <div id="step_2">
+            <p>Step 2. 每個 client 提供一些外包資料給 Server。</p>
+            
+            <ul class = "intro_list">
+                <li>
+                    <p style="font-size: 12px;">【左格：請填入資料特徵，類別為最後一格，每行為一筆資料。】</p>
+<textarea class="new_textarea" rows="5" cols="40" disabled>
+5.1,3.5,1.4,0.2,Iris-setosa
+4.9,3.0,1.4,0.2,Iris-setosa
+</textarea>
+                </li>
+                <li>
+                    <p style="font-size: 12px;">【右格：請設定每個特徵值的門檻值 ( t < = n )，類別不需填寫。】</p>
+<textarea class="new_textarea" rows="5" cols="40" disabled>
+1,1,1,1
+1,2,1,2
+</textarea>
+                </li>
+            </ul>
+            
+            <!-- Pass icon URL to JavaScript using data attribute -->
+            <img id="icon" src="{% static 'images/cell-phone.png' %}" data-icon-url="{% static 'images/cell-phone.png' %}" style="display: none;">
+
+            <div id = "textarea-container"></div>
+            
+        </div>
+
+        <input type="submit" id="submit-btn" value="送出">
+    </form>
+
+{% endblock %}

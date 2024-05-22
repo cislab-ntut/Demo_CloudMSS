@@ -1,0 +1,202 @@
+.info { color : red ; }
+
+table {
+    width: 50%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid;
+}
+
+header {
+    padding: 40px;
+    text-align: center;
+    background: #1abc9c;
+    color: white;
+    font-size: 24px;
+    display: flex;
+    justify-content: space-between;
+}
+ 
+main {
+    margin: 0 auto;
+    padding: 18px;
+}
+
+footer {
+    padding: 20px;
+    text-align: center;
+    color: white;
+    background-color: indigo;
+}
+
+#controls-container {
+    margin-left: 50px;
+    margin-bottom: 20px;
+}
+
+/* 单独调整输入框和按钮的间距 */
+#num {
+    margin-right: 10px;
+}
+
+#step_2 {
+    display: none;
+}
+
+/* 隐藏提交按钮 */
+#submit-btn {
+    display: none;
+}
+
+.intro_list li{
+    display: inline-block;
+}
+
+.textarea-container {
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+
+.icon_client{
+    display: block;
+    width: 100px;
+}
+
+.new_textarea{
+    display: block;
+    overflow-y: scroll;
+    height: 100px;
+    resize: none;
+    margin-left: 30px;
+}
+
+textarea {
+    overflow-y: scroll;
+    height: 100px;
+    resize: none;
+}
+
+.container_clients {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container_client {
+    position: relative;
+    flex: 1 1 auto;
+    margin: 5px;
+    /* display: inline-block; */
+}
+
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;                       /* 調整文字顏色 */
+    font-size: 12px;                      /* 調整文字大小 */
+    font-family: Arial, sans-serif;       /* 調整文字字體 */
+    opacity: 0;                           /* 預設隱藏文字 */
+    transition: opacity 0.3s ease;        /* 增加漸變效果 */
+}
+
+.container_client:hover .text-overlay {
+    opacity: 1; /* 滑鼠懸停時顯示文字 */
+}
+
+.container_cloud_server {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 兩個等寬的格子 */
+    gap: 20px;                      /* 格子間距 */
+}
+
+.text-area {
+    border: 1px solid #ccc;   /* 邊框 */
+    padding: 20px;              /* 內邊距 */
+    text-align: center;         /* 文字置中 */
+}
+
+.icon {
+    position: relative;     /* 改為相對定位 */
+    display: block;         /* 讓圖標變成區塊元素，以便可以使用margin:auto實現置中 */
+    margin: auto;           /* 使用margin:auto將圖標置中 */
+}
+
+/* 默認樣式 */
+.text_hover_effect {
+    font-size: 16px;
+    transition: all 0.15s ease;
+}
+
+/* 懸停樣式 */
+.text_hover_effect:hover {
+    font-size: 18px;
+    color: blue;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+ol {
+    list-style-type: none;
+    counter-reset: step;
+    padding-left: 0px;
+}
+
+ol li {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+ol li:before {
+    /* content: "Step " counter(step) "."; */
+    content: counter(step);
+    font-weight: bold;
+    font-size: 18px;
+    counter-increment: step;
+    
+    position: absolute;
+    left: 0;
+    top: 2px;
+
+    background: lightblue;
+    border-radius: 100%;
+    color: white;
+    width: 1.2em;
+    text-align: center;
+    display: inline-block;
+}
+
+ol li p {
+    margin-left: 30px;
+}
+
+.container_server {
+    display: grid;
+    width: 70%;
+    gap: 20px;                      /* 格子間距 */
+}
+
+.container_client_list {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.client_icon_list {
+    position: relative;     /* 改為相對定位 */
+    display: block;         /* 讓圖標變成區塊元素 */
+    margin-bottom: 20px;
+}
+
+.client_text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;                       /* 調整文字顏色 */
+    font-size: 12px;                      /* 調整文字大小 */
+    font-family: Arial, sans-serif;       /* 調整文字字體 */
+}

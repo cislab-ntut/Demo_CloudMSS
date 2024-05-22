@@ -1,0 +1,42 @@
+{% extends "base.html"%}
+
+{% load static %}
+
+{% block title %}Convert thresholds{% endblock %}
+
+{% block main %}
+
+    <h2>門檻值轉換器</h2>
+
+    <form action="/convert_threshold/" method="post">
+        {% csrf_token %}
+
+        <div>
+            <p>Step 1. 請輸入資料特徵 (包含類別欄位)。</p>
+            
+            <ul class = "intro_list">
+                <li>
+                    <p style="font-size: 12px;">【左格：請填入資料特徵，類別為最後一格，每行為一筆資料。】</p>
+                    <textarea class="new_textarea" rows="5" cols="40" name="data"></textarea>
+                </li>
+                <li>
+                    <p style="font-size: 12px;">【右格：按下送出按鈕，即會產生門檻值資料。】</p>
+                    <textarea class="new_textarea" rows="5" cols="40">{{threshold}}</textarea>
+                </li>
+            </ul>
+            
+        </div>
+
+        <div>
+            <p>Step 2. 設定門檻值，按下送出，產生對應的門檻值資料集。</p>
+
+            <div id="controls-container">
+                <label for="t">門檻值 (t)：</label>
+                <input id="t" type="text" name="t">
+            </div>
+        </div>
+
+        <input type="submit" value="送出">
+    </form>
+
+{% endblock %}

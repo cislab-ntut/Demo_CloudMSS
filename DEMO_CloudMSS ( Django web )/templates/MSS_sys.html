@@ -1,0 +1,46 @@
+
+{% extends "base.html"%}
+
+{% load static %}
+
+{% block title %}CloudMSS system{% endblock %}
+
+{% block main%}
+<div>
+    {% if clients %}
+    <div class="container_clients">
+
+        {% for client in clients %}
+
+        <div class="container_client" onclick="window.open('/kNN_service?client=' + this.querySelector('.text-overlay').innerText);">
+            <img class="icon" src="{% static 'images/cell-phone.png' %}" alt="cell-phone" width="150">
+            <div class="text-overlay">{{client.share}}</div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+    {% else %}
+    <p>clients 沒有資料</p>
+    {% endif %}
+
+    <hr>
+
+    <div class="container_cloud_server">
+        <div class="text-area">
+            <img class="icon" src="{% static 'images/cloud-black.png' %}" alt="cloud_server_1" width="100">
+            <h2>Cloud Server 1</h2>
+            {% for cs1 in cloud_server_1 %}
+            <p class="text_hover_effect" onclick="window.open('/recover_secret?pub_shares=' + this.innerText);">{{cs1}}</p>
+            {% endfor %}
+        </div>
+        <div class="text-area">
+            <img class="icon" src="{% static 'images/cloud-white.png' %}" alt="cloud_server_2" width="100">
+            <h2>Cloud Server 2</h2>
+            {% for cs2 in cloud_server_2 %}
+            <p class="text_hover_effect" onclick="window.open('/recover_secret?pub_shares=' + this.innerText);">{{cs2}}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

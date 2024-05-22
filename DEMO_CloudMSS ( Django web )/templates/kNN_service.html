@@ -1,0 +1,110 @@
+{% extends "base.html"%}
+
+{% load static %}
+
+{% block header_script %}<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>{% endblock %}
+
+{% block title %}MSS_kNN{% endblock %}
+
+{% block main %}
+
+    <h2>kNN 分類服務</h2>
+
+    {% if result %}
+        <script>
+            alert("預測結果：{% for r in result %}\n  >    {{ r }}{% endfor %}");
+        </script>
+    {% endif %}
+
+    {% if error %}
+        <script>
+            alert("執行失敗：{{ error }}");
+        </script>
+    {% endif %}
+    
+    <div>
+        <ol>
+            <li><p>請填入查詢資料，每行為一組 instance。</p></li>
+            <li><p>參與人數 = (1 ~ n)，表示該輪計算的協作人數 (包含自己)。</p><p>【此處將以隨機抽取 clients 來完成演示】</p></li>
+            <li><p>k 值：設定 kNN 分類模型，要參考 k 個最接近查詢點的資料。 </p></li>
+        </ol>
+    </div>
+
+    <form action="/kNN_service/" method="post" style="padding-top: 16px;">
+
+        {% csrf_token %}
+
+        <div class = "container_client_list">
+            <div class="client_icon_list">
+                <img src="{% static 'images/cell-phone.png' %}" alt="cell-phone" width="150" style="left: 5px;">
+                <div id="client_text" class="client_text">{{client}}</div>
+                <input type="text" name="client_text" style="display: none;" value="{{client}}">
+            </div>
+            <div>
+                <div style="margin-bottom: 20px;">
+                    <textarea class="new_textarea" rows="5" cols="60" name="query"></textarea>
+                </div>
+                <div style="display: grid; grid-template-rows: repeat(2, 1fr); grid-template-columns: repeat(2, 1fr); gap: 10px;">
+                    
+                    <div style="grid-row-start: 1; grid-row-end: 2; grid-column-start: 1; grid-column-end: 2;">
+                        <label for="participant" style="margin-left: 30px;">參與人數 (clients)：</label><input id="participant" type="text" name="participant" value="{{service_t}}">
+                    </div>
+
+                    <div style="grid-row-start: 2; grid-row-end: 3; grid-column-start: 1; grid-column-end: 2;">
+                        <label for="n_neighbors" style="margin-left: 30px;">k 值 (n_neighbors)：</label><input id="n_neighbors" type="text" name="n_neighbors" value="10">
+                    </div>
+
+                    <div style="grid-row-start: 1; grid-row-end: 3; grid-column-start: 2; grid-column-end: 3; align-self: center;">
+                        <input type="submit" style="margin-left: 30px;" value="MSSkNN">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <br><hr><br>
+
+        <div class="container_server">
+            <div class="text-area">
+                <img class="icon" src="{% static 'images/cloud-black.png' %}" alt="cloud_server_1" width="100">
+                <h2>Operation Record</h2>
+                <p id="op_record"></p>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function(){
+
+                // 定義更新函數
+                function updateTextarea() {
+                    $.ajax({
+                        url: "/get_op_record/",  // 替換成您的後端URL
+                        type: "GET",
+                        success: function(response){
+
+                            {% comment %} console.log("觸發 updateTextarea()", response); {% endcomment %}
+
+                            {% comment %} console.log("response.data:", response.data); {% endcomment %}
+
+                            var data = response.data;
+
+                            // 成功接收後端回應時執行的動作
+                            $("#op_record").html(data.join("<br>"));
+                        },
+                        error: function(xhr, status, error){
+                            // 發生錯誤時執行的動作
+                            console.error("發生錯誤:", error);
+                        }
+                    });
+                }
+                
+                // 每隔一段時間更新一次 textarea
+                setInterval(updateTextarea, 5000); // 這裡設置更新頻率為5秒（5000毫秒）
+                
+                // 頁面加載時首次更新
+                updateTextarea();
+            });
+        </script>
+    
+    </form>
+
+{% endblock %}

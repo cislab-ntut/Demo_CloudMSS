@@ -190,7 +190,7 @@ Django 已預設將常用的 app 設定為 INSTALLED_APPS 例如：auth（認證
 
 ### B. 設定網址路由：myweb/urls.py
 
-    ~~~
+~~~
     from django.contrib import admin
     from django.urls import path
     from myapp import views
@@ -204,7 +204,7 @@ Django 已預設將常用的 app 設定為 INSTALLED_APPS 例如：auth（認證
         path("convert_threshold/", views.convert_threshold),    # 門檻值轉換器
         path("get_op_record/", views.get_op_record,)            # 回傳 op_record (運算操作紀錄)。
     ]
-    ~~~
+~~~
 
 ### C. 設定應用程式函數的定義：myapp\views.py
 
@@ -457,7 +457,7 @@ Django 已預設將常用的 app 設定為 INSTALLED_APPS 例如：auth（認證
         - 每個實例都是一棵鳶尾植物的特徵。
         - 其中一類與其他兩類可線性分割，後者彼此不可線性分割。
         - 預測目標是鳶尾屬植物的分類。
-        <br>
+
         ~~~
         - Name：鳶尾花資料集
         - Attributes：
@@ -479,7 +479,7 @@ Django 已預設將常用的 app 設定為 INSTALLED_APPS 例如：auth（認證
         - 由於物鏡和與被調查物體的距離，因此獲得了分辨率約為 660 dpi 的灰階圖片。
         - 使用 小波變換 ( Wavelet Transform ) 工具用於從影像中提取特徵。  
         - 預測目標是為評估紙幣真偽程序而拍攝圖像的分類。
-        <br>
+
         ~~~
         - Name：鈔票真偽認證
         - Attributes：

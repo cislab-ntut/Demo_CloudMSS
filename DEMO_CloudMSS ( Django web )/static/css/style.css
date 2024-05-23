@@ -173,12 +173,6 @@ ol li p {
     margin-left: 30px;
 }
 
-.container_server {
-    display: grid;
-    width: 70%;
-    gap: 20px;                      /* 格子間距 */
-}
-
 .container_client_list {
     position: relative;
     display: flex;

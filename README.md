@@ -11,7 +11,7 @@
 ~~~
 Preliminary on "CloudMSS" repository：
 
-- [CloudMSS](https://github.com/stanley568598/CloudMSS)
+- [CloudMSS](https://github.com/cislab-ntut/CloudMSS)
 ~~~
 
 ## 功能
